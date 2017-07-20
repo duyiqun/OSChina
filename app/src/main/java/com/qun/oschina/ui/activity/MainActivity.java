@@ -1,7 +1,9 @@
-package com.qun.oschina;
+package com.qun.oschina.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.qun.oschina.R;
 
 public class MainActivity extends AppCompatActivity {
 

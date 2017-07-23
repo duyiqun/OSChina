@@ -5,10 +5,13 @@ import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import com.qun.oschina.R;
 import com.qun.oschina.ui.fragment.NewsFragment;
+import com.qun.oschina.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,11 +47,26 @@ public class MainActivity extends AppCompatActivity {
          * 第二个参数 class代表fragment的class
          * 第三个参数 参数
          */
-        for (int i = 0; i < 5; i++) {
+
+        //文字数组
+        String[] tabs = Utils.getStringArray(R.array.tabs_arrays);
+        //图片数组
+        int[] images = {R.drawable.tab_icon_new, R.drawable.tab_icon_tweet, R.drawable.tab_icon_selector, R.drawable.tab_icon_explore, R.drawable.tab_icon_explore};
+
+        for (int i = 0; i < tabs.length; i++) {
+
             TabHost.TabSpec tabSpec = mFtabMainBottomLayout.newTabSpec("tag" + i);//复用
 
             //设置显示的view
             View view = View.inflate(this, R.layout.tab_indicator, null);
+
+            //动态的设置文字
+            TextView title = (TextView) view.findViewById(R.id.tab_title);
+            title.setText(tabs[i]);
+            //动态的设置图片
+            ImageView icon = (ImageView) view.findViewById(R.id.iv_icon);
+            icon.setImageResource(images[i]);
+
             tabSpec.setIndicator(view);
 
             Class<?> clss = NewsFragment.class;

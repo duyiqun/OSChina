@@ -110,7 +110,7 @@ public abstract class LoaderPager extends FrameLayout {
 
                 // 切换界面
                 Utils.runOnUIThread(new Runnable() {
-                    
+
                     @Override
                     public void run() {
                         showPager();

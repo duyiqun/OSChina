@@ -6,21 +6,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.qun.oschina.R;
 import com.qun.oschina.bean.MainTabs;
+import com.qun.oschina.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.fl_main_show_layout)
     FrameLayout mFlMainShowLayout;
     @BindView(R.id.ftab_main_bottom_layout)
     FragmentTabHost mFtabMainBottomLayout;
+    @BindView(R.id.iv_main_click)
+    ImageView mIvMainClick;
+    @BindView(R.id.activity_main)
+    LinearLayout mActivityMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,14 +85,16 @@ public class MainActivity extends AppCompatActivity {
 
             Bundle args = new Bundle();
             args.putString("point", i + "");
-            addTab(tabs[i], args);
+            addTab(tabs[i], args, i);
         }
 
         //去掉分隔线
         mFtabMainBottomLayout.getTabWidget().setDividerDrawable(null);
+
+        mIvMainClick.setOnClickListener(this);
     }
 
-    private void addTab(MainTabs tab, Bundle args) {
+    private void addTab(MainTabs tab, Bundle args, int point) {
         TabHost.TabSpec tabSpec = mFtabMainBottomLayout.newTabSpec(tab.mTag);//复用
 
         //设置显示的view
@@ -99,9 +107,25 @@ public class MainActivity extends AppCompatActivity {
         ImageView icon = (ImageView) view.findViewById(R.id.iv_icon);
         icon.setImageResource(tab.mImage);
 
+        //在第三个位置的时候不显示
+        if (point == 2) {
+            view.setVisibility(View.INVISIBLE);
+        }
+
         tabSpec.setIndicator(view);
 
         Class<?> clss = tab.mClss;
         mFtabMainBottomLayout.addTab(tabSpec, clss, args);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_main_click:
+                ToastUtil.showToast("我被点了");
+                break;
+            default:
+                break;
+        }
     }
 }

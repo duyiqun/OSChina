@@ -10,15 +10,28 @@
 
     <!--展示界面-->
     <FrameLayout
-        android:layout_weight="1"
         android:id="@+id/fl_main_show_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
 
     <!--底部导航-->
-    <android.support.v4.app.FragmentTabHost
-        android:id="@+id/ftab_main_bottom_layout"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"/>
+        android:layout_height="50dp">
+
+        <android.support.v4.app.FragmentTabHost
+            android:id="@+id/ftab_main_bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"/>
+
+        <ImageView
+            android:id="@+id/iv_main_click"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:src="@drawable/tab_icon_selector"/>
+
+    </FrameLayout>
 
 </LinearLayout>

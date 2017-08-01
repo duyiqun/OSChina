@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.qun.oschina.ui.view.LoaderPager;
 
 /**
- * Created by giga on 2017/8/1.
+ * Created by Qun on 2017/8/1.
  */
 
 public abstract class BaseFragment extends Fragment {

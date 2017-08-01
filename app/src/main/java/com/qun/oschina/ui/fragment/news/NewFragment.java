@@ -1,25 +1,27 @@
 package com.qun.oschina.ui.fragment.news;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.qun.oschina.R;
+import com.qun.oschina.ui.fragment.BaseFragment;
 
 /**
  * 资讯
  * Created by Qun on 2017/7/25.
  */
 
-public class NewFragment extends Fragment {
+public class NewFragment extends BaseFragment {
 
-    @Nullable
+    //返回一个view
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        TextView textView = new TextView(getContext());
-        textView.setText("我是子子界面");
-        return textView;
+    protected View createShowView() {
+        View view = View.inflate(getContext(), R.layout.fragment_new, null);
+        return view;
+    }
+
+    //返回一个数据
+    @Override
+    public Object getURLData() {
+        return "";
     }
 }
